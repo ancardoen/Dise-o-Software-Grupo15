@@ -1,1 +1,4 @@
-# Dise-o-Software-Grupo15
+# Diseño-Software-Grupo15
+
+#Integrantes:
+- Antonio Cardoen Bonnefoy
