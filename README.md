@@ -3,4 +3,5 @@
 #Integrantes:
 - Antonio Cardoen Bonnefoy
 - Ignacio Millar Cárcamo
-- 
+- Ruth Zanabria
+ 
