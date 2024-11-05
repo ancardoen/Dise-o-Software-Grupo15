@@ -29,7 +29,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/Users/sophia/Documents/GitHub/Dise-o-Software-Grupo15/venv"
+set -gx VIRTUAL_ENV "/Users/sophia/Proyectos/Dise-o-Software-Grupo15/venv"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH

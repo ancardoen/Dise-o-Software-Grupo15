@@ -1,12 +1,2 @@
-if [ "$DATABASE" = "postgres" ]
-then
-    echo "Esperando a que PostgreSQL arranque..."
-
-    while ! nc -z $SQL_HOST $SQL_PORT; do
-      sleep 0.1
-    done
-
-    echo "PostgreSQL arrancado"
-fi
-
-exec "$@"
+#!/bin/sh
+flask run --host=0.0.0.0 --port=5000
