@@ -1,15 +1,14 @@
 from flask import Flask
-from .extensions import db  # Importa la instancia de db
-from .config import Config  # Importa la configuración
+from .extensions import db
+from .config import Config
+from .main import main  
 
 def create_app():
     app = Flask(__name__)
-    
-    #  base de datos
     app.config.from_object(Config)
-    db.init_app(app) 
 
-    with app.app_context():
-        from . import models 
-        db.create_all() 
+    db.init_app(app)
+
+    app.register_blueprint(main)
+
     return app
