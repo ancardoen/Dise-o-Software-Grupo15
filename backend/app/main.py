@@ -1,18 +1,20 @@
 from flask import request, jsonify
+from flask_cors import CORS
 from app import create_app
 from .extensions import db
 from .models import User
 
 app = create_app()
+CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
 
 @app.route('/signup', methods=['POST'])
 def signup():
     data = request.json
     nombre = data.get('nombre')
     correo = data.get('correo')
-    contraseña = data.get('contraseña')
+    contrasena = data.get('contrasena')
 
-    new_user = User(nombre=nombre, correo=correo, contraseña=contraseña)
+    new_user = User(nombre=nombre, correo=correo, contrasena=contrasena)
     db.session.add(new_user)
     db.session.commit()
 
@@ -22,9 +24,9 @@ def signup():
 def login():
     data = request.json
     correo = data.get('correo')
-    contraseña = data.get('contraseña')
+    contrasena = data.get('contrasena')
 
-    user = User.query.filter_by(correo=correo, contraseña=contraseña).first()
+    user = User.query.filter_by(correo=correo, contrasena=contrasena).first()
 
     if user:
         return jsonify({"message": f"Bienvenido, {user.nombre}!"}), 200

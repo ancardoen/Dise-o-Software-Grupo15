@@ -3,15 +3,28 @@ import { useState } from "react";
 import Link from 'next/link'
 
 export default function Home() {
+    const [counter, setCounter] = useState(1);
     const [car1,setCar1]  = useState(0);
     const [car2,setCar2]  = useState(0);
     const [car3,setCar3]  = useState(0);
     const [car4,setCar4]  = useState(0);
     const [car5,setCar5]  = useState(0);
     const [car6,setCar6]  = useState(0);
+   
     function handlerGuardar(){
-        const coleccion = [car1,car2,car3,car4,car5,car6]
-        console.log(coleccion)
+    // Definimos el array coleccion dentro de la función
+    const coleccion = [car1, car2, car3, car4, car5, car6];
+    console.log(coleccion);
+    // Obtiene las colecciones existentes o un array vacío si es la primera colección
+    const items = JSON.parse(localStorage.getItem("Colections")) || [];
+    // Crea la nueva colección con el nombre y los valores de "coleccion"
+    const newCollection = { name: `Collection ${counter}`, values: coleccion };
+    // Guarda la lista de colecciones actualizada en el localStorage
+    const updatedItems = [...items, newCollection];
+    localStorage.setItem("Colections", JSON.stringify(updatedItems));
+    // Incrementa el contador para el próximo nombre de colección
+    setCounter(counter + 1);    
+    console.log(counter)
     }
     return (
         <div>
