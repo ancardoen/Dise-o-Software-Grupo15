@@ -1,7 +1,7 @@
 export default function Home() {
     return (
         <div>
-            <main className="flex items-center justify-center min-h-screen bg-gray-100">
+            <main className="flex items-center justify-center min-h-screen bg-blue-100">
                 <div className="w-full max-w-md p-8 bg-white shadow-md rounded-lg">
                     <div className="text-center mb-6">
                         <p className="text-2xl font-bold text-gray-700">Ingrediente (X)</p>
@@ -34,9 +34,6 @@ export default function Home() {
                     </form>
                 </div>
             </main>
-            <footer className="bg-red-500 text-center">
-                <p className="py-2">&copy; 2024 Test</p>
-            </footer>
         </div>
     );
 }
