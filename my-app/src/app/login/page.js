@@ -3,7 +3,7 @@ import Link from 'next/link';
 export default function Home() {
     return (
         <div>
-            <main className="flex items-center justify-center min-h-screen bg-gray-100">
+            <main className="flex items-center justify-center min-h-screen bg-blue-100">
                 <div className="w-full max-w-md p-8 bg-white shadow-md rounded-lg">
                     <div className="text-center mb-6">
                         <p className="text-2xl font-bold text-gray-700">Log in</p>
@@ -24,21 +24,18 @@ export default function Home() {
                                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none"/>
                         </div>
                         <div className="flex justify-between">
-                            <Link href="/signup">
-                                <button type="submit" className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600">
-                                    Ir a Signup
-                                </button>
-                            </Link>
                             <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
                                 Log in
                             </button>
+                            <Link href="/signup">
+                                <button type="submit" className="px-4 py-2 bg-blue-700 text-white rounded-md hover:bg-blue-600">
+                                    Ir a Sign-up
+                                </button>
+                            </Link>
                         </div>
                     </form>
                 </div>
             </main>
-            <footer className="bg-red-500 text-center">
-                <p className="py-2">&copy; 2024 Test</p>
-            </footer>
         </div>
     );
 }
