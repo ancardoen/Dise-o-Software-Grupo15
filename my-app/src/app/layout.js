@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
             <li class="hover:text-blue-900"><a href="/quienes-somos">Quienes Somos</a></li>
             <li class="hover:text-blue-900"><a href="/menu">Menu</a></li>
             <li class="space-x-2">
-                <a href="/login" class="px-4 py-2 bg-blue-800 rounded-2xl hover:bg-white hover:text-blue-500 transition duration-300">Sign in</a>
+                <a href="/login" class="px-4 py-2 bg-blue-800 rounded-2xl hover:bg-white hover:text-blue-500 transition duration-300">Log in</a>
             </li>
           </ul>
         </nav>
