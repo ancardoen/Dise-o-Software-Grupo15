@@ -91,18 +91,14 @@ export default function Home() {
                         </div>
                         {mensaje && <p className="text-red-500">{mensaje}</p>}
                         <div className="flex justify-between">
-                            <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
-                                Sign-up
-                            </button>
                             <Link href="/login">
                                 <button type="submit" className="px-4 py-2 bg-blue-700 text-white rounded-md hover:bg-blue-600">
                                     Ir a Log in
                                 </button>
                             </Link>
-                            <button type="submit" onClick={handleSubmit} className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
-                                Signup
+                            <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
+                                Sign-up
                             </button>
-
                         </div>
                     </form>
                 </div>

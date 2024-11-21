@@ -1,0 +1,41 @@
+{
+    "Main":{
+         "t1": "Como usar"
+    },
+    "layout":{
+         "t1":"Inicio",
+         "t2":"Quienes somos"
+    },
+    "Ingresar":{
+         "t1": "Calorías",
+         "t2": "Azúcar",
+         "t3": "Proteínas",
+         "t4": "Sodio",
+         "t5": "Grasas totales",
+         "t6": "Gramos totales",
+         "t7": "Guardar"
+    },
+    "Login":{
+         "t1": "Correo",
+         "t2": "Contraseña",
+         "t3": "Ir a Sign-up"
+    },
+    "Signup":{
+         "t1": "Nombre de usuario",
+         "t2": "Correo",
+         "t3": "Contraseña",
+         "t4": "Confirma contraseña",
+         "t5": "ir a Log-in",
+         "t6": "Sign-up"
+    },
+    "QuienesSomos":{
+         "t1":"descripción"
+    },
+    "Menu":{
+         "t1": "Menú de opciones",
+         "t2": "Buscar ingrediente",
+         "t3": "Crear lista",
+         "t4": "Ingresar ingrediente",
+         "t5": "Abrir lista"
+    }
+ }

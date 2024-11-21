@@ -1,0 +1,41 @@
+{
+   "Main":{
+        "t1": "How to use"
+   },
+   "layout":{
+        "t1":"Home",
+        "t2":"Our team"
+   },
+   "Ingresar":{
+        "t1": "Calories",
+        "t2": "Sugar",
+        "t3": "Proteins",
+        "t4": "Sodium",
+        "t5": "Total Fat",
+        "t6": "Total Grams",
+        "t7": "Save"
+   },
+   "Login":{
+        "t1": "Email",
+        "t2": "Password",
+        "t3": "Go to Sign up"
+   },
+   "Signup":{
+        "t1": "Username",
+        "t2": "Email",
+        "t3": "Password",
+        "t4": "Confirm your password",
+        "t5": "Go to Login",
+        "t6": "Sign-up"
+   },
+   "QuienesSomos":{
+        "t1":"description"
+   },
+   "Menu":{
+        "t1": "Menu Options",
+        "t2": "Search ingredient",
+        "t3": "Create list",
+        "t4": "Enter ingredient",
+        "t5": "Open list"
+   }
+}
