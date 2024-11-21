@@ -69,6 +69,7 @@ export default function Home() {
                             </button>
                         </div>
                     </form>
+                    <a href="/como-calcular">¿Cómo calcular los valores nutricionales?</a>
                 </div>
             </main>
         </div>
