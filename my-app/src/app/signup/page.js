@@ -23,40 +23,45 @@ export default function Home() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-            // Verificar si algún campo está vacío
+        // Verificar si algún campo está vacío
         if (!nombre || !correo || !contrasena1 || !contrasena2) {
-            setMensaje('Por favor, llena todos los campos.');
-            return;
+          setMensaje('Por favor, llena todos los campos.');
+          return;
         }
+    
+        // Verificar que las contraseñas coincidan
         if (contrasena1 !== contrasena2) {
-            setMensaje('Las contraseñas no coinciden');
-            return;
+          setMensaje('Las contraseñas no coinciden.');
+          return;
+        }
+    
+        try {
+            const response = await fetch('/api/create_user', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ nombre, correo, contrasena: contrasena1 }),
+                });
+              
+    
+          const data = await response.json();
+    
+          if (response.ok) {
+            setMensaje('Registro exitoso. ¡Bienvenido!');
+            setNombre('');
+            setCorreo('');
+            setContrasena1('');
+            setContrasena2('');
+          } else {
+            // Si hay un mensaje de error del servidor, se muestra el mensaje de error en pantalla
+            setMensaje(data.error || 'Error al registrar el usuario.');
           }
-          try {
-            const response = await fetch('http://localhost:5000/signup', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({ nombre, correo, contrasena: contrasena1 }),
-            });
-      
-            const data = await response.json();
-      
-            if (response.ok) {
-              setMensaje(data.message);
-              setNombre('');
-              setCorreo('');
-              setContrasena1('');
-              setContrasena2('');
-            } else {
-              setMensaje('Error al registrar el usuario.');
-            }
-          } catch (error) {
-            console.error('Error:', error);
-            setMensaje('Error al conectar con el servidor.');
-          }
-        };
+        } catch (error) {
+          console.error('Error:', error);
+          setMensaje('Error al conectar con el servidor.');
+        }
+      };
 
     return (
         <div>
@@ -96,7 +101,7 @@ export default function Home() {
                                     Ir a Log in
                                 </button>
                             </Link>
-                            <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
+                            <button type="submit" onClick={handleSubmit} className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
                                 Sign-up
                             </button>
                         </div>
