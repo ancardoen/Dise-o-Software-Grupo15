@@ -1,6 +1,53 @@
 import Link from 'next/link';
 
 export default function Home() {
+    const [nombre, setNombre] = useState('');
+    const [correo, setCorreo] = useState('');
+    const [contrasena, setContrasena1] = useState('');
+    const [mensaje, setMensaje] = useState('');
+
+    // Este useEffect se activa cada vez que 'mensaje' cambia
+    useEffect(() => {
+        if (mensaje) {
+        const timer = setTimeout(() => {
+            setMensaje('');
+        }, 5000);
+
+        // Limpiar el temporizador si el componente se desmonta antes de los 5 segundos
+        return () => clearTimeout(timer);
+        }
+    }, [mensaje]);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await fetch('/api/validate_user', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username:correo, password: contrasena }),
+                });
+              
+    
+          const data = await response.json();
+    
+          if (response.ok) {
+            setMensaje('Registro exitoso. ¡Bienvenido!');
+            setNombre('');
+            setCorreo('');
+            setContrasena1('');
+            setContrasena2('');
+          } else {
+            // Si hay un mensaje de error del servidor, se muestra el mensaje de error en pantalla
+            setMensaje(data.error || 'Error al registrar el usuario.');
+          }
+        } catch (error) {
+          console.error('Error:', error);
+          setMensaje('Error al conectar con el servidor.');
+        }
+      };
+
     return (
         <div>
             <main className="flex items-center justify-center min-h-screen bg-blue-100">
@@ -24,7 +71,7 @@ export default function Home() {
                                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none"/>
                         </div>
                         <div className="flex justify-between">
-                            <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
+                            <button type="submit" onClick={handleSubmit} className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
                                 Log in
                             </button>
                             <Link href="/signup">

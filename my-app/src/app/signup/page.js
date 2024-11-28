@@ -41,7 +41,7 @@ export default function Home() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ nombre, correo, contrasena: contrasena1 }),
+                body: JSON.stringify({ username:nombre, correo, password: contrasena1 }),
                 });
               
     
