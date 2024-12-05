@@ -2,6 +2,7 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -13,8 +14,8 @@
     "dotenv": "^16.4.5",
     "i18next": "^23.16.5",
     "my-app": "file:",
-    "next": "^14.2.18",
-    "next-i18next": "^15.3.1",
+    "next": "^14.2.20",
+    "next-i18next": "^15.4.0",
     "pg": "^8.13.1",
     "pip": "^0.0.1",
     "react": "^18.3.1",
