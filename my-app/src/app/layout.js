@@ -1,5 +1,6 @@
 export default function RootLayout({ children }) {
   return (
+    
     <html lang="es">
       <head>
         <title>
@@ -26,6 +27,7 @@ export default function RootLayout({ children }) {
       <footer class="bg-blue-900 text-white text-center py-4">
         <p>&copy; 2024 (nombre pag). Todos los derechos reservados.</p>
       </footer>
+      
       </body>
     </html>
   );

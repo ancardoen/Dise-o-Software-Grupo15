@@ -1,26 +1,24 @@
 "use client"
 import { useTranslation } from 'next-i18next';
 import React from 'react';
-import i18next from 'i18next';
 
 export default function Home() {
-    const { t } = useTranslation("common"); /*Variable utilizada para traducir texto*/
-    const handleLanguageChange = (lang) => {
-        i18next.changeLanguage(lang); // Cambia el idioma dinámicamente
-      };
+    const  {t, i18n}  = useTranslation(); /*Variable utilizada para traducir texto*/
+    const changeLanguage = (lng) => {i18n.changeLanguage(lng);};
+    
     return (
         <div>
             
             <main className="flex items-center justify-center min-h-screen bg-blue-50">
                 <div className="w-full max-w-7xl p-8 bg-white shadow-md rounded-lg">
                 <button
-                    onClick={() => handleLanguageChange('es')}
+                    onClick={() => changeLanguage('es')}
                     className="mr-4 p-2 bg-blue-500 text-white rounded"
                 >
                     Español
                 </button>
                 <button
-                    onClick={() => handleLanguageChange('en')}
+                    onClick={() => changeLanguage('en')}
                     className="p-2 bg-gray-500 text-white rounded"
                 >
                     English
