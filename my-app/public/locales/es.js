@@ -1,3 +1,4 @@
+var jsonES =
 {
      "Main": {
        "t1": "Bienvenido",

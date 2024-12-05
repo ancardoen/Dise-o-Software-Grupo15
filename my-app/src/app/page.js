@@ -1,6 +1,7 @@
 "use client"
 import { useTranslation } from 'next-i18next';
 import React from 'react';
+import i18n from 'i18next';
 
 export default function Home() {
     const  {t, i18n}  = useTranslation(); /*Variable utilizada para traducir texto*/
@@ -8,7 +9,7 @@ export default function Home() {
     
     return (
         <div>
-            
+
             <main className="flex items-center justify-center min-h-screen bg-blue-50">
                 <div className="w-full max-w-7xl p-8 bg-white shadow-md rounded-lg">
                 <button
