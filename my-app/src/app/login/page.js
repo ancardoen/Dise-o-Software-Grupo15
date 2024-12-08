@@ -38,14 +38,14 @@ export default function Home() {
             const data = await response.json();
 
             if (response.ok) {
-                setMensaje('Registro exitoso. ¡Bienvenido!');
+                setMensaje('Ingreso exitoso. ¡Bienvenido!');
                 setCorreo('');
                 setContrasena('');
                 // Redirigir a la página de inicio
                 window.location.href = '/';
             } else {
                 // Si hay un mensaje de error del servidor, se muestra el mensaje de error en pantalla
-                setMensaje(data.error || 'Error al registrar el usuario.');
+                setMensaje(data.error || 'Error al ingresar el usuario.');
             }
         } catch (error) {
             console.error('Error:', error);

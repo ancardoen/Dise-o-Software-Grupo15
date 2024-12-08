@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
           </nav>
         </header>
           {children}
-        <footer class="bg-blue-900 text-white text-center py-4">
+        <footer className="bg-blue-900 text-white text-center py-4">
           <p>&copy; 2024 (nombre pag). Todos los derechos reservados.</p>
         </footer>
       </body>
