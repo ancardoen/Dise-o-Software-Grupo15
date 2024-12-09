@@ -83,7 +83,7 @@ export default function Home() {
                         </div>
                         <div className="flex flex-row justify-between items-center space-x-12">
                             {/* Botón Cancelar */}
-                            <Link href="/">
+                            <Link href="/menu">
                                 <button className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 hover:border-red-500 rounded">
                                 Cancelar
                                 </button>
@@ -91,7 +91,7 @@ export default function Home() {
                             {/*bg-cyan-500 hover:bg-cyan-400 text-white font-bold py-2 px-4 hover:border-cyan-500 rounded*/}
                             {/* Botón Limpiar */}
                             <button 
-                                className="bg-yellow-300 hover:bg-yellow-200 text-white font-bold py-2 px-4 hover:border-cyan-500 rounded"
+                                className="bg-yellow-300 hover:bg-yellow-200 text-white font-bold py-2 px-4 rounded"
                                 onClick={handleLimpiar}
                                 >
                                 Limpiar
@@ -111,7 +111,7 @@ export default function Home() {
                         </div>
 
                     </form>
-                    <a href="/como-calcular" className="text-blue-600 hover:text-blue-300">¿Cómo calcular los valores nutricionales? 👈</a>
+                    <a href="/como-calcular" className="justify-center text-blue-600 hover:text-blue-300">¿Cómo calcular los valores nutricionales? 👈</a>
                 </div>
             </main>
         </div>
