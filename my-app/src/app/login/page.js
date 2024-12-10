@@ -24,7 +24,7 @@ export default function Home() {
         e.preventDefault();
         try {
             console.log("ENVIO:");
-            console.log("correo: " + correo);
+            console.log("username: " + usuario);
             console.log("contrasena: " + contrasena);
 
             const response = await fetch('/api/validate_user', {
@@ -32,14 +32,14 @@ export default function Home() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ username: correo, password: contrasena }),
+                body: JSON.stringify({ username: usuario, password: contrasena }),
             });
 
             const data = await response.json();
 
             if (response.ok) {
                 setMensaje('Ingreso exitoso. ¡Bienvenido!');
-                setCorreo('');
+                setUsuario('');
                 setContrasena('');
                 // Redirigir a la página de inicio
                 window.location.href = '/';
@@ -72,7 +72,7 @@ export default function Home() {
                                 type="text"
                                 value={usuario}
                                 onChange={(e) => setUsuario(e.target.value)}
-                                placeholder="Correo"
+                                placeholder="Username"
                                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none" 
                             />
                         </div>
