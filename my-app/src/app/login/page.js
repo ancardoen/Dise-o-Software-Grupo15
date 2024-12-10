@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 
 export default function Home() {
-    const [usuario, setUsuario] = useState('');
+    const [correo, setCorreo] = useState('');
     const [contrasena, setContrasena] = useState('');
     const [mensaje, setMensaje] = useState('');
 
@@ -38,14 +38,14 @@ export default function Home() {
             const data = await response.json();
 
             if (response.ok) {
-                setMensaje('Ingreso exitoso. ¡Bienvenido!');
+                setMensaje('Registro exitoso. ¡Bienvenido!');
                 setCorreo('');
                 setContrasena('');
                 // Redirigir a la página de inicio
                 window.location.href = '/';
             } else {
                 // Si hay un mensaje de error del servidor, se muestra el mensaje de error en pantalla
-                setMensaje(data.error || 'Error al ingresar el usuario.');
+                setMensaje(data.error || 'Error al registrar el usuario.');
             }
         } catch (error) {
             console.error('Error:', error);
@@ -70,8 +70,8 @@ export default function Home() {
                             <input
                                 id="mail"
                                 type="text"
-                                value={usuario}
-                                onChange={(e) => setUsuario(e.target.value)}
+                                value={correo}
+                                onChange={(e) => setCorreo(e.target.value)}
                                 placeholder="Correo"
                                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none" 
                             />
