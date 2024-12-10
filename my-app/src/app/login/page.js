@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 
 export default function Home() {
-    const [correo, setCorreo] = useState('');
+    const [usuario, setUsuario] = useState('');
     const [contrasena, setContrasena] = useState('');
     const [mensaje, setMensaje] = useState('');
 
@@ -70,8 +70,8 @@ export default function Home() {
                             <input
                                 id="mail"
                                 type="text"
-                                value={correo}
-                                onChange={(e) => setCorreo(e.target.value)}
+                                value={usuario}
+                                onChange={(e) => setUsuario(e.target.value)}
                                 placeholder="Correo"
                                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none" 
                             />

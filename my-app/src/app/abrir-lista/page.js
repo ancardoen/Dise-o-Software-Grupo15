@@ -1,49 +1,55 @@
 "use client";
 
-import { useState } from "react";
-
-const listasGuardadas = [
-  {
-    nombre: "Lista 1",
-    alimentos: [
-      {
-        nombre: "Manzana",
-        Calorías: "52 kcal",
-        Azúcar: "10 g",
-        Proteínas: "0.3 g",
-        Sodio: "1 mg",
-        "Grasas Totales": "0.2 g",
-        "Gramos Totales": "100 g",
-      },
-      {
-        nombre: "Pan",
-        Calorías: "265 kcal",
-        Azúcar: "4.9 g",
-        Proteínas: "9 g",
-        Sodio: "491 mg",
-        "Grasas Totales": "3.2 g",
-        "Gramos Totales": "100 g",
-      },
-    ],
-  },
-  {
-    nombre: "Lista 2",
-    alimentos: [
-      {
-        nombre: "Leche",
-        Calorías: "42 kcal",
-        Azúcar: "5 g",
-        Proteínas: "3.4 g",
-        Sodio: "44 mg",
-        "Grasas Totales": "1 g",
-        "Gramos Totales": "100 g",
-      },
-    ],
-  },
-];
+import { useState, useEffect } from "react";
 
 export default function AbrirLista() {
+  const [listasGuardadas, setListasGuardadas] = useState([]);
   const [listaSeleccionada, setListaSeleccionada] = useState(null);
+
+  // Cargar las listas desde el localStorage cuando el componente se monte
+  useEffect(() => {
+    const listas = JSON.parse(localStorage.getItem("ListasGuardadas")) || [];
+    setListasGuardadas(listas);
+  }, []);
+
+  // Función que maneja el cambio de lista seleccionada
+  const handleListaChange = (e) => {
+    const selectedList = listasGuardadas.find((lista) => lista.nombre === e.target.value);
+    setListaSeleccionada(selectedList || null);
+  };
+
+  // Función para calcular el total de los nutrientes
+  const calcularTotales = () => {
+    if (!listaSeleccionada) return null;
+
+    let totales = {
+      Calorías: 0,
+      Azúcar: 0,
+      Proteínas: 0,
+      Sodio: 0,
+      "Grasas Totales": 0,
+      "Gramos Totales": 0,
+    };
+
+    listaSeleccionada.alimentos?.forEach((alimento) => {
+      // Sumar los nutrientes de cada alimento
+      totales.Calorías += alimento.calorias || 0;
+      totales.Azúcar += alimento.azucar || 0;
+      totales.Proteínas += alimento.proteinas || 0;
+      totales.Sodio += alimento.sodio || 0;
+      totales["Grasas Totales"] += alimento.grasas || 0;
+      totales["Gramos Totales"] += alimento.gramosTotales || 0;
+    });
+
+    // Redondear los totales a dos decimales
+    Object.keys(totales).forEach((key) => {
+      totales[key] = totales[key].toFixed(2); // Redondea a 2 decimales
+    });
+
+    return totales;
+  };
+
+  const totales = calcularTotales();
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-blue-100 p-4">
@@ -54,11 +60,7 @@ export default function AbrirLista() {
           id="lista"
           className="w-full max-w-md border border-gray-300 rounded-lg p-2"
           value={listaSeleccionada ? listaSeleccionada.nombre : ""}
-          onChange={(e) =>
-            setListaSeleccionada(
-              listasGuardadas.find((lista) => lista.nombre === e.target.value)
-            )
-          }
+          onChange={handleListaChange}
         >
           <option value="" disabled>
             -- Selecciona una lista --
@@ -88,19 +90,30 @@ export default function AbrirLista() {
               </tr>
             </thead>
             <tbody>
-              {listaSeleccionada.alimentos.map((alimento, index) => (
+              {listaSeleccionada.alimentos?.map((alimento, index) => (
                 <tr key={index} className="border-t">
                   <td className="px-4 py-2">{alimento.nombre}</td>
-                  <td className="px-4 py-2">{alimento.Calorías}</td>
-                  <td className="px-4 py-2">{alimento.Azúcar}</td>
-                  <td className="px-4 py-2">{alimento.Proteínas}</td>
-                  <td className="px-4 py-2">{alimento.Sodio}</td>
-                  <td className="px-4 py-2">{alimento["Grasas Totales"]}</td>
-                  <td className="px-4 py-2">{alimento["Gramos Totales"]}</td>
+                  <td className="px-4 py-2">{alimento.calorias || "N/A"} kcal</td>
+                  <td className="px-4 py-2">{alimento.azucar || "N/A"} g</td>
+                  <td className="px-4 py-2">{alimento.proteinas || "N/A"} g</td>
+                  <td className="px-4 py-2">{alimento.sodio || "N/A"} mg</td>
+                  <td className="px-4 py-2">{alimento.grasas || "N/A"} g</td>
+                  <td className="px-4 py-2">{alimento.gramosTotales || "N/A"} g</td>
                 </tr>
               ))}
             </tbody>
           </table>
+          {totales && (
+            <div className="bg-blue-200 px-4 py-2 mt-4">
+              <h3 className="font-bold text-lg">Totales:</h3>
+              <p>Calorías: {totales.Calorías} kcal</p>
+              <p>Azúcar: {totales.Azúcar} g</p>
+              <p>Proteínas: {totales.Proteínas} g</p>
+              <p>Sodio: {totales.Sodio} mg</p>
+              <p>Grasas Totales: {totales["Grasas Totales"]} g</p>
+              <p>Gramos Totales: {totales["Gramos Totales"]} g</p>
+            </div>
+          )}
         </div>
       ) : (
         <p className="text-gray-500 mt-4">

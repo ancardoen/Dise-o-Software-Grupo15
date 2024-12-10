@@ -88,7 +88,6 @@ export default function Home() {
                                 Cancelar
                                 </button>
                             </Link>
-                            {/*bg-cyan-500 hover:bg-cyan-400 text-white font-bold py-2 px-4 hover:border-cyan-500 rounded*/}
                             {/* Botón Limpiar */}
                             <button 
                                 className="bg-yellow-300 hover:bg-yellow-200 text-white font-bold py-2 px-4 rounded"

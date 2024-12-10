@@ -1,41 +1,66 @@
 "use client";
-import { useState } from 'react';
-
-{/* ej alimentos */}
-const alimentos = {
-    Manzana: {
-      Calorías: "52 kcal",
-      Azúcar: "10 g",
-      Proteínas: "0.3 g",
-      Sodio: "1 mg",
-      "Grasas Totales": "0.2 g",
-      "Gramos Totales": "100 g",
-    },
-    Pan: {
-      Calorías: "265 kcal",
-      Azúcar: "4.9 g",
-      Proteínas: "9 g",
-      Sodio: "491 mg",
-      "Grasas Totales": "3.2 g",
-      "Gramos Totales": "100 g",
-    },
-    Leche: {
-      Calorías: "42 kcal",
-      Azúcar: "5 g",
-      Proteínas: "3.4 g",
-      Sodio: "44 mg",
-      "Grasas Totales": "1 g",
-      "Gramos Totales": "100 g",
-    },
-  };
+import { useEffect, useState } from "react";
 
 export default function Home() {
   const [alimentoSeleccionado, setAlimentoSeleccionado] = useState(null);
+  const [alimentos, setAlimentos] = useState({});
 
   const handleSelectionChange = (event) => {
     const alimento = event.target.value;
     setAlimentoSeleccionado(alimentos[alimento] || null);
   };
+
+  useEffect(() => {
+    const obtenerAlimentos = () => {
+      console.log("Leyendo datos desde localStorage...");
+      
+      const coleccionesJSON = localStorage.getItem("Colections");
+      if (!coleccionesJSON) {
+        console.error("No se encontró la clave 'Colections' en localStorage.");
+        return {};
+      }
+
+      try {
+        const colecciones = JSON.parse(coleccionesJSON);
+
+        const data = colecciones.reduce((acc, item) => {
+          const [nombre, calorias, azucar, proteinas, sodio, grasasTotales, gramosTotales] = item.values;
+
+          // Parsear valores a números para realizar cálculos
+          const gramos = parseFloat(gramosTotales);
+          const caloriasCalculadas = (parseFloat(calorias) / 100) * gramos;
+          const azucarCalculada = (parseFloat(azucar) / 100) * gramos;
+          const proteinasCalculadas = (parseFloat(proteinas) / 100) * gramos;
+          const sodioCalculado = (parseFloat(sodio) / 100) * gramos;
+          const grasasTotalesCalculadas = (parseFloat(grasasTotales) / 100) * gramos;
+
+          acc[nombre] = {
+            Calorías: `${caloriasCalculadas.toFixed(2)} kcal`,
+            Azúcar: `${azucarCalculada.toFixed(2)} g`,
+            Proteínas: `${proteinasCalculadas.toFixed(2)} g`,
+            Sodio: `${sodioCalculado.toFixed(2)} mg`,
+            "Grasas Totales": `${grasasTotalesCalculadas.toFixed(2)} g`,
+            "Gramos Totales": `${gramos} g`, // Mantener este valor como referencia
+          };
+
+          return acc;
+        }, {});
+
+        console.log("Datos transformados:", data);
+        return data;
+      } catch (error) {
+        console.error("Error al parsear los datos desde localStorage:", error);
+        return {};
+      }
+    };
+
+    const datosAlimentos = obtenerAlimentos();
+    setAlimentos(datosAlimentos);
+  }, []);
+
+  useEffect(() => {
+    console.log("Estado alimentos actualizado:", alimentos);
+  }, [alimentos]);
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-blue-100">
@@ -44,7 +69,10 @@ export default function Home() {
       </div>
       <div className="mb-6">
         <label className="text-center block text-lg font-medium mb-2">Selecciona un alimento:</label>
-        <select className="w-full max-w-md border border-gray-300 rounded-lg p-2" onChange={handleSelectionChange}>
+        <select
+          className="w-full max-w-md border border-gray-300 rounded-lg p-2"
+          onChange={handleSelectionChange}
+        >
           <option value="" disabled>
             -- Selecciona un alimento --
           </option>
@@ -61,7 +89,7 @@ export default function Home() {
           <thead className="bg-blue-200">
             <tr>
               <th className="text-left px-4 py-2">Nutriente</th>
-              <th className="text-right px-4 py-2">Cantidad</th>
+              <th className="text-right px-4 py-2">Cantidad en la porción</th>
             </tr>
           </thead>
           <tbody>
