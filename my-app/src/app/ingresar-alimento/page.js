@@ -110,7 +110,7 @@ export default function Home() {
                         </div>
 
                     </form>
-                    <a href="/como-calcular" className="justify-center text-blue-600 hover:text-blue-300">¿Cómo calcular los valores nutricionales? 👈</a>
+                    <a href="/como-calcular" className="text-blue-600 hover:text-blue-300">¿Cómo calcular los valores nutricionales? 👈</a>
                 </div>
             </main>
         </div>

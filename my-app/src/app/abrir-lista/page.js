@@ -104,7 +104,7 @@ export default function AbrirLista() {
             </tbody>
           </table>
           {totales && (
-            <div className="bg-blue-200 px-4 py-2 mt-4">
+            <div className="bg-blue-200 px-4 py-2">
               <h3 className="font-bold text-lg">Totales:</h3>
               <p>Calorías: {totales.Calorías} kcal</p>
               <p>Azúcar: {totales.Azúcar} g</p>
