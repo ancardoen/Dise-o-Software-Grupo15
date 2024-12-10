@@ -6,20 +6,7 @@ import { useState, useEffect } from 'react';
 export default function Home() {
     const [usuario, setUsuario] = useState('');
     const [contrasena, setContrasena] = useState('');
-    const [mensaje, setMensaje] = useState('');
-
-    // Este useEffect se activa cada vez que 'mensaje' cambia
-    useEffect(() => {
-        if (mensaje) {
-            const timer = setTimeout(() => {
-                setMensaje('');
-            }, 5000);
-
-            // Limpiar el temporizador si el componente se desmonta antes de los 5 segundos
-            return () => clearTimeout(timer);
-        }
-    }, [mensaje]);
-
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -38,7 +25,8 @@ export default function Home() {
             const data = await response.json();
 
             if (response.ok) {
-                setMensaje('Ingreso exitoso. ¡Bienvenido!');
+                localStorage.setItem('loggedIn', 'true');
+                alert('Ingreso exitoso. ¡Bienvenido!');
                 setUsuario('');
                 setContrasena('');
                 // Redirigir a la página de inicio
@@ -61,11 +49,6 @@ export default function Home() {
                         <p className="text-2xl font-bold text-gray-700">Log in</p>
                     </div>
                     <form className="space-y-4" onSubmit={handleSubmit}>
-                        {mensaje && (
-                            <div className="text-red-500 text-center mb-4">
-                                {mensaje}
-                            </div>
-                        )}
                         <div>
                             <input
                                 id="mail"
