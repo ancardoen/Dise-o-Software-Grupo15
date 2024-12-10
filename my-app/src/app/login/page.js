@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 
 export default function Home() {
-    const [usuario, setUsuario] = useState('');
+    const [correo, setCorreo] = useState('');
     const [contrasena, setContrasena] = useState('');
     const [mensaje, setMensaje] = useState('');
 
@@ -45,7 +45,7 @@ export default function Home() {
                 window.location.href = '/';
             } else {
                 // Si hay un mensaje de error del servidor, se muestra el mensaje de error en pantalla
-                setMensaje(data.error || 'Error al ingresar el usuario.');
+                setMensaje(data.error || 'Error al registrar el usuario.');
             }
         } catch (error) {
             console.error('Error:', error);
