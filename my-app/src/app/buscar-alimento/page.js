@@ -70,6 +70,7 @@ export default function Home() {
       <div className="mb-6">
         <label className="text-center block text-lg font-medium mb-2">Selecciona un alimento:</label>
         <select
+          value = ""
           className="w-full max-w-md border border-gray-300 rounded-lg p-2"
           onChange={handleSelectionChange}
         >
