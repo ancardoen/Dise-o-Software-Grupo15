@@ -1,7 +1,7 @@
 "use client";
 
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 export default function Home() {
     const [usuario, setUsuario] = useState('');
@@ -37,7 +37,7 @@ export default function Home() {
             }
         } catch (error) {
             console.error('Error:', error);
-            setMensaje('Error al conectar con el servidor.');
+            alert("Usuario o contraseña incorrectos, vuelva a intentarlo")
         }
     };
 

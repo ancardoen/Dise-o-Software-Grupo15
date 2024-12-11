@@ -2,12 +2,14 @@
 import { useEffect, useState } from "react";
 
 export default function Home() {
+  const [nombreAlimentoSeleccionado, setNombreAlimentoSeleccionado] = useState(""); // Nuevo estado para el nombre
   const [alimentoSeleccionado, setAlimentoSeleccionado] = useState(null);
   const [alimentos, setAlimentos] = useState({});
 
   const handleSelectionChange = (event) => {
-    const alimento = event.target.value;
-    setAlimentoSeleccionado(alimentos[alimento] || null);
+    const nombre = event.target.value;
+    setNombreAlimentoSeleccionado(nombre); // Actualizar el nombre seleccionado
+    setAlimentoSeleccionado(alimentos[nombre] || null);
   };
 
   useEffect(() => {
@@ -70,7 +72,7 @@ export default function Home() {
       <div className="mb-6">
         <label className="text-center block text-lg font-medium mb-2">Selecciona un alimento:</label>
         <select
-          value = ""
+          value={nombreAlimentoSeleccionado} // Mostrar el nombre del alimento seleccionado
           className="w-full max-w-md border border-gray-300 rounded-lg p-2"
           onChange={handleSelectionChange}
         >
